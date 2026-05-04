@@ -1,0 +1,63 @@
+/* Title */
+.title {
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+/* Table Style */
+.table-modern {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.table-modern thead {
+  background: linear-gradient(45deg, #28a745, #20c997);
+  color: white;
+}
+
+.table-modern th {
+  padding: 12px;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.table-modern td {
+  padding: 12px;
+  vertical-align: middle;
+}
+
+/* Hover Effect */
+.table-modern tbody tr:hover {
+  background-color: #f8f9fa;
+  transition: 0.3s;
+}
+
+/* Price */
+.price {
+  font-weight: bold;
+  color: #e67e22;
+}
+
+/* Product Image */
+.product-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+/* No Image */
+.no-image {
+  color: #999;
+  font-size: 12px;
+}
+
+/* Badge */
+.badge {
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 8px;
+}

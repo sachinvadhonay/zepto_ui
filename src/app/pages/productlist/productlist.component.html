@@ -1,0 +1,52 @@
+<div class="container mt-4">
+  <h2 class="title">🛒 Products List</h2>
+
+  <table class="table table-modern mt-3">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Product</th>
+        
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Image</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let product of products">
+      <td>{{ product.productID }}</td>
+
+       <td class="fw-bold text-primary">
+          {{ product.productName }}
+        </td>
+
+        
+        <td class="price">
+          ₹ {{ product.price }}
+        </td>
+
+        <td>
+          <span
+            class="badge"
+            [ngClass]="product.quantity > 50 ? 'bg-success' : 'bg-danger'"
+          >
+            {{ product.quantity }}
+          </span>
+        </td>
+
+        <td>
+          <img
+            *ngIf="product.imageUrl; else noImage"
+            [src]="'https://localhost:7018/' + product.imageUrl"
+            class="product-img"
+          />
+
+          <ng-template #noImage>
+            <span class="no-image">No Image</span>
+          </ng-template>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

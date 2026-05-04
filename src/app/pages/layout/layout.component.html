@@ -1,0 +1,42 @@
+<div class="main-container">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2 class="logo">Zepto</h2>
+<ul>
+  <ul>
+  <li routerLinkActive="active">
+    <a routerLink="/Home">Dashboard</a>
+  </li>
+
+  <li routerLinkActive="active">
+    <a routerLink="/productlist">Products</a>
+  </li>
+
+  <li routerLinkActive="active">
+    <a routerLink="/categories">Categories</a>
+  </li>
+
+  <li routerLinkActive="active">
+    <a routerLink="/addproduct">Add Product</a>
+  </li>
+</ul>
+</ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content">
+
+    <!-- Navbar -->
+    <div class="navbar">
+      <span>Admin Panel</span>
+      <button class="logout-btn">Logout</button>
+    </div>
+
+    <!-- Page Content -->
+    <div class="page-content">
+      <router-outlet></router-outlet>
+    </div>
+
+  </div>
+</div>
