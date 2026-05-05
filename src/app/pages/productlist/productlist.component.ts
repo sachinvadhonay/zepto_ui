@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../models/product.model';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-productlist',
@@ -14,21 +15,24 @@ export class ProductlistComponent implements OnInit {
 
   products: Product[] = [];
 
-  constructor(private productService: ProductService) { }
+  constructor(private route: ActivatedRoute,private productService: ProductService) { }
 
   ngOnInit(): void {
-    this.loadProducts();
+    const id = this.route.snapshot.paramMap.get('id');
+
+     if(id)
+      {
+        this.productService.getProductByCategory(id).subscribe(res =>{
+          console.log("Filtered Products:", res);
+          this.products = res;
+        });
+      }
+      
   }
 
-  loadProducts() {
-    this.productService.getAllProducts().subscribe({
-      next: (data) => {
-        console.log('API Data:', data);
-        this.products = data;
-      },
-      error: (err) => {
-        console.error('Error fetching products:', err);
-      }
-    });
-  }
+
+ 
+
+
+ 
 }

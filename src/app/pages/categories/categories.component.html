@@ -1,1 +1,19 @@
-<p>categories works!</p>
+<div class="container mt-4">
+  <h2 class="title">🛒 Categories</h2>
+
+  <div class="row mt-4">
+
+    <div class="col-md-3 mb-4" *ngFor="let cat of categories">
+      
+      <div class="category-card" (click)="goToProducts(cat.categoryId)">
+        
+        <img [src]="cat.image" class="cat-img" />
+
+        <h5>{{ cat.categoryName }}</h5>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
