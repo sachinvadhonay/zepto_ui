@@ -1,0 +1,50 @@
+.add-product-container{
+  width:600px;
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  margin:30px auto;
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+}
+
+h2{
+  text-align:center;
+  margin-bottom:10px;
+}
+
+label{
+  font-weight:600;
+  color:#333;
+  margin-top:5px;
+}
+
+input,
+textarea,
+select{
+  padding:12px;
+  border:1px solid #ccc;
+  border-radius:8px;
+  font-size:15px;
+}
+
+textarea{
+  resize:none;
+  height:80px;
+}
+
+button{
+  background:#0d6efd;
+  color:white;
+  border:none;
+  padding:12px;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:16px;
+  margin-top:10px;
+}
+
+button:hover{
+  background:#0b5ed7;
+}

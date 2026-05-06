@@ -19,6 +19,10 @@ export class ProductService {
     return this.http.get<Product[]>(`${this.apiUrl}/${categoryId}`);
   }
 
+
+    addproduct(data:FormData){
+      return this.http.post('https://localhost:7018/api/Product',data);
+    }
     
 
 }

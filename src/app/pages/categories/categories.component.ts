@@ -56,5 +56,10 @@ export class CategoriesComponent implements OnInit {
 
     return '';
   } 
+
+
+  goToAddProduct(){
+    this.router.navigate(['/addproduct'])
+  }
 }
  

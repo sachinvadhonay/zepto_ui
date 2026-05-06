@@ -1,1 +1,54 @@
-<p>addproduct works!</p>
+<div class="add-product-container">
+ 
+  <h2>Add Product</h2>
+
+  <!-- Product Name -->
+  <label>Product Name</label>
+  <input type="text"
+         placeholder="Enter Product Name"
+         [(ngModel)]="productData.productname">
+
+  <!-- Description -->
+  <label>Description</label>
+  <textarea
+      placeholder="Enter Description"
+      [(ngModel)]="productData.description">
+  </textarea>
+
+  <!-- Price -->
+  <label>Price</label>
+  <input type="number"
+         placeholder="Enter Price"
+         [(ngModel)]="productData.price">
+
+  <!-- Quantity -->
+  <label>Quantity</label>
+  <input type="number"
+         placeholder="Enter Quantity"
+         [(ngModel)]="productData.quantity">
+
+  <!-- Category -->
+  <label>Category</label>
+  <select [(ngModel)]="productData.categoryId">
+
+    <option value="0">Select Category</option>
+
+    <option *ngFor="let cat of categories"
+            [value]="cat.categoryId">
+
+      {{cat.categoryName}}
+
+    </option>
+
+  </select>
+
+  <!-- Image -->
+  <label>Product Image</label>
+  <input type="file" (change)="onFileChange($event)">
+
+  <!-- Button -->
+  <button (click)="saveProduct()">
+    Save Product
+  </button>
+
+</div>
