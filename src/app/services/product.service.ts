@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from '../models/product.model';
+import { vendors } from '../models/vendor.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,8 @@ import { Product } from '../models/product.model';
 export class ProductService {
 
    private apiUrl = 'https://localhost:7018/api/Product/category';
+
+   private apivenurl = 'https://localhost:7018/api/Product/vendors';
 
   constructor(private http: HttpClient) 
   { 
@@ -24,5 +27,8 @@ export class ProductService {
       return this.http.post('https://localhost:7018/api/Product',data);
     }
     
+    getallvendors(): Observable<vendors[]>{
+       return this.http.get<vendors[]>(this.apivenurl)
+    }
 
 }

@@ -6,10 +6,10 @@
       <tr>
         <th>ID</th>
         <th>Product</th>
-        
         <th>Price</th>
         <th>Quantity</th>
         <th>Image</th>
+        <th>ACTIONS</th>
       </tr>
     </thead>
 
@@ -45,6 +45,11 @@
           <ng-template #noImage>
             <span class="no-image">No Image</span>
           </ng-template>
+        </td>
+        <td>
+          <button class="edit-btn" (click)="editProduct(product.productID)">
+            Edit
+          </button>
         </td>
       </tr>
     </tbody>

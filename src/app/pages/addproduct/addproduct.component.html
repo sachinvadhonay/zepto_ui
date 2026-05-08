@@ -42,6 +42,23 @@
 
   </select>
 
+  <label>Vendors</label>
+
+<select class="form-control"
+        [(ngModel)]="productData.vendorId"
+        name="vendorId">
+
+  <option value="0">Select Vendors</option>
+
+  <option *ngFor="let ven of vendors"
+          [value]="ven.vendorId">
+
+    {{ ven.vendorname }}
+
+  </option>
+
+</select>
+
   <!-- Image -->
   <label>Product Image</label>
   <input type="file" (change)="onFileChange($event)">

@@ -5,6 +5,7 @@ import { Category } from '../../models/category.model';
 import { CategoryService } from '../../services/category.service';
 import { ProductService } from '../../services/product.service';
 import Swal from 'sweetalert2';
+import { vendors } from '../../models/vendor.model';
 
 @Component({
   selector: 'app-addproduct',
@@ -17,13 +18,15 @@ export class AddproductComponent implements OnInit{
 
     categories: Category[] = [];
 
+    vendors : vendors[] = [];
+
     productData: any ={
     productname:'',
     description: '',
     price: 0,
     quantity: 0,
     categoryId: 0,
-    vendorId: 1
+    vendorId: 0,
     }
 
      selectedFile: File | null = null;
@@ -36,6 +39,7 @@ export class AddproductComponent implements OnInit{
   ngOnInit(): void {
     
     this.Loadcategories();
+    this.Loadvendors();
   }
 
   Loadcategories()
@@ -43,6 +47,14 @@ export class AddproductComponent implements OnInit{
     this.categoryService.getAllcategories().subscribe(res=>{
       this.categories = res;
     });
+  }
+
+  Loadvendors()
+  {
+    this.productService.getallvendors().subscribe(res=>{
+      console.log(res);
+      this.vendors = res;
+    })
   }
 
    onFileChange(event: any) {
