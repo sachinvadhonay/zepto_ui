@@ -18,7 +18,7 @@ export class ProductService {
 
   }
 
-  getProductByCategory(categoryId: string): Observable<Product[]>{
+  getProductByCategory(categoryId: number): Observable<Product[]>{
     return this.http.get<Product[]>(`${this.apiUrl}/${categoryId}`);
   }
 
@@ -31,4 +31,19 @@ export class ProductService {
        return this.http.get<vendors[]>(this.apivenurl)
     }
 
+
+    getproductById(id:number)
+    {
+      return this.http.get<any>(`https://localhost:7018/api/Product/${id}`);
+    }
+
+    updateProduct(id:number,data:FormData)
+    {
+      return this.http.put(`https://localhost:7018/api/Product/${id}`,data);
+    }
+
+    DeleteProduct(id: number)
+    {
+      return this.http.delete(`https://localhost:7018/api/Product/${id}`);
+    }
 }

@@ -26,10 +26,18 @@ export const routes: Routes = [
         component: ProductlistComponent,
       },
       {
+        path: 'addproduct',
+        component: AddproductComponent,
+      },
+      {
         path: 'addproduct/:id',
         component: AddproductComponent,
       },
-      { path: 'categories', component: CategoriesComponent },
+
+      {
+         path: 'categories',
+         component: CategoriesComponent 
+        },
     ],
   },
   {

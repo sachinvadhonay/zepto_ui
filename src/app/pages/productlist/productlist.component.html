@@ -47,9 +47,17 @@
           </ng-template>
         </td>
         <td>
-          <button class="edit-btn" (click)="editProduct(product.productID)">
-            Edit
+        
+            <button class="edit-btn"
+            (click)="editProduct(product.productID)">
+          ✏️
           </button>
+
+        <button class="delete-btn"
+                (click)="deleteProduct(product.productID)">
+          🗑️
+        </button>
+
         </td>
       </tr>
     </tbody>

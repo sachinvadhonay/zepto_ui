@@ -61,3 +61,22 @@
   font-size: 12px;
   border-radius: 8px;
 }
+
+.delete-btn{
+  border:none;
+  background:rgb(229, 84, 84);
+  color:white;
+  padding:6px 10px;
+  border-radius:5px;
+  margin-left:5px;
+  cursor:pointer;
+}
+
+.edit-btn{
+  border:none;
+  background:rgb(66, 38, 126);
+  color:white;
+  padding:6px 10px;
+  border-radius:5px;
+  cursor:pointer;
+}

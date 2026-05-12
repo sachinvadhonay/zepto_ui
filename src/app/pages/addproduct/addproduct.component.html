@@ -65,7 +65,7 @@
 
   <!-- Button -->
   <button (click)="saveProduct()">
-    Save Product
-  </button>
+  {{ productId > 0 ? 'Update Product' : 'Save Product' }}
+</button>
 
 </div>

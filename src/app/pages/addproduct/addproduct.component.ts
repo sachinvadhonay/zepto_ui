@@ -6,6 +6,8 @@ import { CategoryService } from '../../services/category.service';
 import { ProductService } from '../../services/product.service';
 import Swal from 'sweetalert2';
 import { vendors } from '../../models/vendor.model';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-addproduct',
@@ -15,6 +17,29 @@ import { vendors } from '../../models/vendor.model';
   styleUrl: './addproduct.component.css'
 })
 export class AddproductComponent implements OnInit{
+
+
+    constructor(private categoryService: CategoryService, private productService : ProductService, private route: ActivatedRoute) 
+    {
+      
+
+    }
+
+      ngOnInit(): void {
+        
+        this.Loadcategories();
+        this.Loadvendors();
+
+        this.productId = Number(this.route.snapshot.paramMap.get('id'));
+
+        if(this.productId > 0)
+        {
+          this.loadProductById();
+        }
+      }
+
+
+    productId:number = 0;
 
     categories: Category[] = [];
 
@@ -31,16 +56,17 @@ export class AddproductComponent implements OnInit{
 
      selectedFile: File | null = null;
 
-     constructor(private categoryService: CategoryService, private productService : ProductService) {
-      
-
-     }
-   
-  ngOnInit(): void {
     
-    this.Loadcategories();
-    this.Loadvendors();
-  }
+   
+     loadProductById()
+     {
+      this.productService.getproductById(this.productId).subscribe(res=>
+      {
+        this.productData = res;
+      }
+      );
+     }
+  
 
   Loadcategories()
   {
@@ -61,63 +87,112 @@ export class AddproductComponent implements OnInit{
     this.selectedFile = event.target.files[0];
   }
 
-  saveProduct()
-  {
 
+
+  createFormData(): FormData
+  {
     const formData = new FormData();
 
-    formData.append('productname', this.productData.productname);
-    formData.append('description', this.productData.description);
+    formData.append('productname',this.productData.productname);
+     formData.append('description', this.productData.description);
     formData.append('price', this.productData.price);
     formData.append('quantity', this.productData.quantity);
     formData.append('categoryId', this.productData.categoryId);
     formData.append('vendorId', this.productData.vendorId);
 
-     if (this.selectedFile) {
+     if(this.selectedFile)
+    {
       formData.append('imageFile', this.selectedFile);
     }
 
-     this.productService.addproduct(formData).subscribe({
-
-    next: (res) => {
-
-      Swal.fire({
-        title: 'Success!',
-        text: 'Product Added Successfully',
-        icon: 'success',
-        confirmButtonText: 'OK'
-      }).then(()=>{
-
-         this.productData = {
-      productname: '',
-      description: '',
-      price: 0,
-      quantity: 0,
-      categoryId: 0,
-      vendorId: 0
-    };
-     this.selectedFile = null;
-      });
-
-      console.log(res);
-
-    },
-
-    error: (err) => {
-
-      Swal.fire({
-        title: 'Error!',
-        text: 'Something went wrong',
-        icon: 'error',
-        confirmButtonText: 'OK'
-      });
-
-      console.log(err);
-
-    }
-
-  });
+    return formData;
   }
 
 
-}
+
+      saveProduct()
+      {
+        if(this.productId > 0)
+        {
+          this.updateproduct();
+        }
+        else
+        {
+          this.addproduct();
+        }
+      }
+
+
+    addproduct()
+    {
+      const formData = this.createFormData();
+
+      this.productService.addproduct(formData).subscribe({
+          next: (res) => {
+
+        Swal.fire({
+          title: 'Success!',
+          text: 'Product Added Successfully',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        });
+
+        console.log(res);
+      },
+
+       error: (err) => {
+
+        Swal.fire({
+          title: 'Error!',
+          text: 'Something went wrong',
+          icon: 'error',
+          confirmButtonText: 'OK'
+        });
+
+        console.log(err);
+
+      }
+      });
+    }
+    
+
+
+    updateproduct()
+    {
+      const formData = this.createFormData();
+
+      this.productService.updateProduct(this.productId,formData).subscribe({
+
+        next:(res)=>{
+          
+        Swal.fire({
+          title: 'Updated!',
+          text: 'Product Updated Successfully',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        });
+
+        console.log(res);
+        },
+
+        error: (err) => {
+
+        Swal.fire({
+          title: 'Error!',
+          text: 'Update Failed',
+          icon: 'error',
+          confirmButtonText: 'OK'
+        });
+
+        console.log(err);
+
+      }
+      });
+
+
+    }
+ 
+  }
+
+
+ 
